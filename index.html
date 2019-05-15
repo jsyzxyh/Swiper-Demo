@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单元素(datalist)</title>
+</head>
+<body>
+    <form action="">
+        专业：<select name="" id="">
+            <option value="1">aaa</option>
+            <option value="2">bbb</option>
+            <option value="3">ccc</option>
+            <option value="4">ddd</option>
+        </select>
+        <!-- 不仅可以选择，还应该可以输入 -->
+
+        <!-- 要简历输入框和datalist的关联 list="datalist"的id号 -->
+        <!-- 兼容性不好，不常用 -->
+        <!-- option可以是单标签，也可以是双标签 -->
+        专业：<input type="text" list="subjects">
+        <!-- 通过 datalist 创建选择列表 -->
+        <datalist id="subjects">
+            <!-- 创建选项值：value:具体值 label:提示信息，辅助值 -->
+            <option value="aaa" label="第一个"></option>
+            <option value="bbb" label="第二个"></option>
+            <option value="ccc" label="第三个"></option>
+        </datalist>
+
+        网址：<input type="url" list="urls">
+        <datalist id="urls">
+            <!-- input输入类型是url，那么 value 值必须添加 http -->
+            <option value="http://www.baidu.com" label="百度"></option>
+            <option value="http://www.163.com" label="网易"></option>
+            <option value="http://www.google.com" label="谷歌"></option>
+        </datalist>
+    </form>
+</body>
+</html>
