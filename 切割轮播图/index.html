@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>切割轮播图</title>
+    <style>
+        .view {
+            width: 560px;
+            height: 350px;
+            margin: 200px auto;
+            /* background-color: red; */
+            position: relative;
+        }
+
+        ul {
+            width: 100%;
+            height: 100%;
+            list-style: none;
+            /* transform: rotate3d(1, 1, 0, -30deg); */
+            transform-style: preserve-3d;
+        }
+
+        ul>li {
+            width: 20%;
+            height: 100%;
+            /* background-color: #ccc; */
+            float: left;
+            position: relative;
+            transform-style: preserve-3d;
+            /* 添加过渡效果 */
+            transition: transform 0.5s;
+        }
+
+        ul>li>span {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        ul>li>span:nth-of-type(1) {
+            background: url("./images/Emma1.jpg");
+            /* 往z轴正方向偏移 */
+            transform: translateZ(175px);
+        }
+
+        ul>li>span:nth-of-type(2) {
+            background: url("./images/Emma2.jpg");
+            /* 往z轴正方向偏移 */
+            transform: translateY(-175px) rotateX(90deg);
+        }
+
+        ul>li>span:nth-of-type(3) {
+            background: url("./images/Emma3.jpg");
+            /* 往z轴正方向偏移 */
+            transform: translateZ(-175px) rotateX(180deg);
+        }
+
+        ul>li>span:nth-of-type(4) {
+            background: url("./images/Emma4.jpg");
+            /* 往z轴正方向偏移 */
+            transform: translateY(175px) rotateX(-90deg);
+        }
+
+        /* 设置每一个li元素的span显示的图片位置 */
+        ul>li:nth-of-type(2)>span {
+            background-position: -100% 0;
+        }
+
+        ul>li:nth-of-type(3)>span {
+            background-position: -200% 0;
+        }
+
+        ul>li:nth-of-type(4)>span {
+            background-position: -300% 0;
+        }
+
+        ul>li:nth-of-type(5)>span {
+            background-position: -400% 0;
+        }
+
+        .pre,
+        .next {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            position: absolute;
+            top: 50%;
+            text-decoration: none;
+            font-size: 30px;
+            transform: translate(10%, -50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+
+        .pre {
+            left: 35px;
+        }
+
+        .next {
+            right: -34px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="view">
+        <ul>
+            <!-- 每个li就是一个结构块 -->
+            <li>
+                <!-- 每个span是这个结构快中的某一个面，用来显示图片 -->
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </li>
+            <li>
+                <!-- 每个span是这个结构快中的某一个面，用来显示图片 -->
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </li>
+            <li>
+                <!-- 每个span是这个结构快中的某一个面，用来显示图片 -->
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </li>
+            <li>
+                <!-- 每个span是这个结构快中的某一个面，用来显示图片 -->
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </li>
+            <li>
+                <!-- 每个span是这个结构快中的某一个面，用来显示图片 -->
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </li>
+        </ul>
+        <a href="javascript:;" class="pre">&lt;</a>
+        <a href="javascript:;" class="next">&gt;</a>
+    </div>
+    <script src="./jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            // 定义图片索引
+            var index = 0;
+            // 添加节流阀  true说明本次单机会有相应处理
+            var flag = true;
+            // 下一张
+            $(".next").click(function () {
+                if (flag == true) {
+                    flag = false;
+                    index--;
+                    $("li").each(function (key, value) {  // key 0 1 2 3 4
+                        //通过添加 transform 样式进行旋转
+                        $(this).css({
+                            "transform": "rotateX(" + (-(index) * 90) + "deg)",
+                            "transition-delay": (key * 0.2) + "s"
+                        });
+                    });
+                    setTimeout(function () {
+                        flag = true
+                    }, 1000)
+                }
+            })
+            $(".pre").click(function () {
+                if (flag == true) {
+                    flag = false;
+                    index++;
+                    $("li").each(function (key, value) {  // key 0 1 2 3 4
+                        //通过添加 transform 样式进行旋转
+                        $(this).css({
+                            "transform": "rotateX(" + (-(index) * 90) + "deg)",
+                            "transition-delay": (key * 0.2) + "s"
+                        });
+                    });
+                    setTimeout(function () {
+                        flag = true
+                    }, 1000)
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
