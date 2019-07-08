@@ -2,7 +2,7 @@
 test
 测试github使用
 git init
-git add remote add origin https://github.com/jsyzxyh/....
+git remote add origin https://github.com/jsyzxyh/....
 git pull origin master
 git add [filename]
 git commit -m '描述'
